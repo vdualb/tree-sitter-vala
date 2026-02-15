@@ -18,13 +18,7 @@ regenerating.
 
 ### Zed integration
 
-https://github.com/RocketRide9/zed-vala extension uses this grammar and provides support for Zed editor. You will have to build it yourself.
-1. Make sure you have rust toolchain installed. You will need nightly version for Zed Preview.
-2. Clone https://github.com/RocketRide9/zed-vala
-3. Open `Extensions` page in Zed and click `Install Dev Extension`
-4. Select cloned repository
-5. If build fails you can press `F1` and select `zed: open log` command to see build errors.
-6. If build was successful it should just work.
+See https://github.com/vdualb/zed-vala.
 
 ### Neovim integration
 

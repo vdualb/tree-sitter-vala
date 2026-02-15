@@ -1,0 +1,131 @@
+=======
+Contract checks
+=======
+
+class MyKlass {
+    MyKlass(int x, double d)
+    requires (x > 0 && x < 10)
+    requires (d >= 0.0 && d <= 1.0)
+    ensures (2 > 1)
+    {
+        
+    }
+}
+
+double method_name (int x, double d)
+requires (x > 0 && x < 10)
+requires (d >= 0.0 && d <= 1.0)
+ensures (result >= 0.0 && result <= 10.0)
+{
+    return d * x;
+}
+
+int main() {
+    return 0;
+}
+
+---
+
+(source_file
+  (namespace_member
+    (class_declaration
+      (unqualified_type
+        (symbol
+          (identifier)))
+      (class_member
+        (creation_method_declaration
+          (symbol
+            (identifier))
+          (parameter
+            (type
+              (symbol
+                (identifier)))
+            (identifier))
+          (parameter
+            (type
+              (symbol
+                (identifier)))
+            (identifier))
+          (logical_and_expression
+            (relational_expression
+              (member_access_expression
+                (identifier))
+              (integer))
+            (relational_expression
+              (member_access_expression
+                (identifier))
+              (integer)))
+          (logical_and_expression
+            (relational_expression
+              (member_access_expression
+                (identifier))
+              (real))
+            (relational_expression
+              (member_access_expression
+                (identifier))
+              (real)))
+          (relational_expression
+            (integer)
+            (integer))
+          (block)))))
+  (namespace_member
+    (method_declaration
+      (type
+        (symbol
+          (identifier)))
+      (symbol
+        (identifier))
+      (parameter
+        (type
+          (symbol
+            (identifier)))
+        (identifier))
+      (parameter
+        (type
+          (symbol
+            (identifier)))
+        (identifier))
+      (logical_and_expression
+        (relational_expression
+          (member_access_expression
+            (identifier))
+          (integer))
+        (relational_expression
+          (member_access_expression
+            (identifier))
+          (integer)))
+      (logical_and_expression
+        (relational_expression
+          (member_access_expression
+            (identifier))
+          (real))
+        (relational_expression
+          (member_access_expression
+            (identifier))
+          (real)))
+      (logical_and_expression
+        (relational_expression
+          (member_access_expression
+            (identifier))
+          (real))
+        (relational_expression
+          (member_access_expression
+            (identifier))
+          (real)))
+      (block
+        (return_statement
+          (multiplicative_expression
+            (member_access_expression
+              (identifier))
+            (member_access_expression
+              (identifier)))))))
+  (namespace_member
+    (method_declaration
+      (type
+        (symbol
+          (identifier)))
+      (symbol
+        (identifier))
+      (block
+        (return_statement
+          (integer))))))

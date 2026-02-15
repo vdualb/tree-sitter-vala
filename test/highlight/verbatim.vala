@@ -5,5 +5,5 @@ void fn()
         They may contain quotes and may span"" multiple lines.""";
     var v = """ ass sssdas
                 asd """;
-    var b = """ asasdasd """;
+    var b = """ asasdasd       """;
 }

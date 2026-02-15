@@ -302,7 +302,11 @@ module.exports = grammar({
     string_formatter: $ => /%\$?[#0\- +'I]?\d*(\.\d+)?(hh?|ll?|q|L|j|z|Z|t)?[diouxXeEfFgGaAcsCSpnm%]?/,
     template_string: $ => seq(
       '@"',
-      repeat(choice(token(prec(2, /([^$"]+|\\")+/)), $.template_string_expression, '$$')),
+      repeat(choice(
+        token(prec(2, /([^$"]+|\\")+/)),
+        $.template_string_expression,
+        '$$'
+      )),
       token(prec(2, '"'))
     ),
     template_string_expression: $ => choice(
@@ -311,8 +315,11 @@ module.exports = grammar({
     ),
     verbatim_string: $ => seq(
       '"""',
-      repeat(
-        /(.|\n)/,
+      field(
+        'content',
+        repeat(
+          /(.|\s)/,
+        ),
       ),
       '"""'
     ),
@@ -558,7 +565,10 @@ module.exports = grammar({
       commaSep($.parameter),
       ')',
       optional(seq('throws', $.type)),
-      optional(seq(choice('requires', 'ensures'), '(', $._expression, ')')),
+      field(
+        'contract',
+        repeat(seq(choice('requires', 'ensures'), '(', $._expression, ')'))
+      ),
       choice($.block, ';')
     ),
 
@@ -586,7 +596,10 @@ module.exports = grammar({
       commaSep($.parameter),
       ')',
       optional(seq('throws', $.type)),
-      optional(seq(choice('requires', 'ensures'), '(', $._expression, ')')),
+      field(
+        'contract',
+        repeat(seq(choice('requires', 'ensures'), '(', $._expression, ')'))
+      ),
       choice($.block, ';')
     ),
 
@@ -689,7 +702,10 @@ module.exports = grammar({
     assignment: $ => prec.dynamic(20, seq(
       field('left', $.identifier),
       optional($.inline_array_type),
-      optional(seq('=', $._expression))
+      optional(seq(
+        '=',
+        field('right', $._expression)
+      ))
     )),
 
     block: $ => seq(
